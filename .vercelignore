@@ -1,0 +1,10 @@
+.harness
+.trae
+node_modules
+dist
+.DS_Store
+*.log
+.env*
+!.env.example
+README.md
+需求.md

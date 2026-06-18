@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Major+Mono+Display&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --grid-size: 32px;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  background-color: #070A12;
+  color: #E8ECF4;
+  font-family: 'IBM Plex Sans', 'Inter Tight', 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(77, 208, 225, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(255, 45, 117, 0.06), transparent),
+    linear-gradient(rgba(122, 138, 168, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(122, 138, 168, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 21, 36, 0.4);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(122, 138, 168, 0.25);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(122, 138, 168, 0.5);
+}
+
+/* 数字字体 */
+.font-num {
+  font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* 等宽显示 */
+.font-display {
+  font-family: 'Major Mono Display', 'JetBrains Mono', monospace;
+}
+
+/* LED 风格文字 */
+.led-text {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* CRT 扫描线效果（极淡） */
+.crt-scan::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(77, 208, 225, 0.04) 50%, transparent 100%);
+  background-size: 100% 6px;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* 关闭按钮 focus 样式 */
+button:focus-visible,
+input:focus-visible,
+[role='slider']:focus-visible {
+  outline: 1px solid #4DD0E1;
+  outline-offset: 2px;
+}
+
+/* Range Slider 定制 */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  width: 100%;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(77, 208, 225, 0.5) 0%,
+    rgba(77, 208, 225, 0.5) var(--progress, 0%),
+    rgba(122, 138, 168, 0.15) var(--progress, 0%),
+    rgba(122, 138, 168, 0.15) 100%
+  );
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #E8ECF4;
+  border: 1px solid #4DD0E1;
+  border-radius: 50%;
+  margin-top: -7px;
+  cursor: grab;
+  box-shadow: 0 0 12px rgba(77, 208, 225, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+input[type='range']:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(1.15);
+  box-shadow: 0 0 16px rgba(77, 208, 225, 0.9), 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #E8ECF4;
+  border: 1px solid #4DD0E1;
+  border-radius: 50%;
+  cursor: grab;
+  box-shadow: 0 0 12px rgba(77, 208, 225, 0.6);
+}
+
+input[type='range']:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+input[type='range']:disabled::-webkit-slider-thumb {
+  cursor: not-allowed;
+  box-shadow: 0 0 4px rgba(122, 138, 168, 0.4);
+  border-color: rgba(122, 138, 168, 0.6);
+}
+
+/* 顶部装饰扫描线 */
+.scanline-bar {
+  position: relative;
+  overflow: hidden;
+}
+.scanline-bar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(77, 208, 225, 0.6), transparent);
+  animation: scan 2.4s linear infinite;
+  pointer-events: none;
+}
+
+/* 防止 select 中文字 */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}

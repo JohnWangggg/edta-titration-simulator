@@ -1,0 +1,10 @@
+{
+  "name": "edta-titration-simulator",
+  "framework": "vite",
+  "buildCommand": "pnpm build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
