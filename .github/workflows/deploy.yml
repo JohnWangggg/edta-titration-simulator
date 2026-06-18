@@ -35,6 +35,9 @@ jobs:
             echo "GITHUB_PAGES_BASE=/${{ github.event.repository.name }}/" >> $GITHUB_ENV
           fi
 
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Build
         run: pnpm build
         env:
